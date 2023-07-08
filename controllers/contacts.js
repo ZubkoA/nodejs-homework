@@ -52,7 +52,7 @@ const removeContact = async (req, res, next) => {
     const { contactId } = req.params;
     const result = await contacts.removeContact(contactId);
     if (!result) {
-      throw HttpError(404, "Not found");
+      throw HttpError(404, "Not found!");
     }
     res.status(204).send();
   } catch (error) {
@@ -69,7 +69,7 @@ const updateContact = async (req, res, next) => {
     const { contactId } = req.params;
     const result = await contacts.updateContact(contactId, req.body);
     if (!result) {
-      throw HttpError(404, "Not found");
+      throw HttpError(404, "Not found!");
     }
     res.json(result);
   } catch (error) {
