@@ -92,12 +92,12 @@ const updateAvatar = async (req, res, next) => {
     const filename = `${_id}_${originalname}`;
     const resultUpload = path.join(avatarsDir, filename);
 
-    await fs.rename(tempUpload, resultUpload);
+    // await fs.rename(tempUpload, resultUpload);
     const avatarURL = path.join("public", "avatars", filename);
 
-    Jimp.read("tmp/cat.jpg", (err, avatar) => {
+    Jimp.read(tempUpload, (err, avatar) => {
       if (err) throw err;
-      avatar.resize(256, 256).write("public/avatars/avatar.jpg");
+      avatar.resize(256, 256).write(resultUpload);
       next();
     });
 
