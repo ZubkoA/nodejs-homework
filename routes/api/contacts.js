@@ -37,3 +37,30 @@ router.patch(
 );
 
 module.exports = router;
+
+/* Використання роутів 04 урок
+ * REST API =================================
+ * POST       /users            - create user
+ * GET        /users            - get all users
+ * GET        /users/<userID>   - get one user by id
+ * PUT/PATCH  /users/<userID>   - update user by id
+ * DELETE     /users/<userID>   - delete user by id
+ */
+
+// router.post('/', createUser);
+// router.get('/', getAllUsers);
+// router.get('/:id', checkUserId, getOneUser);
+// router.patch('/:id', checkUserId, updateUser);
+// router.delete('/:id', checkUserId, deleteUser);
+
+// router
+//   .route('/')
+//   .post(createUser)
+//   .get(getAllUsers);
+
+// router.use('/:id', checkUserId);
+// router
+//   .route('/:id')
+//   .get(getOneUser)
+//   .patch(updateUser)
+//   .delete(deleteUser);
