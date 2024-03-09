@@ -8,6 +8,7 @@ const listContacts = async (req, res, next) => {
     const { page = 1, limit = 20 } = req.query;
     const skip = (page - 1) * limit;
     const result = await Contact.find({ owner }, { skip, limit });
+    // if we want to get several options, not all use Contact.find().select('email') if ('-email') - retern all from email
     res.json(result);
   } catch (error) {
     next(error);

@@ -9,6 +9,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "Set password for user"],
+      //select: false - ТОДІ ПАСПОРТ НЕ БУДЕ НАМ ПОВЕРТАТИСЬ В ОБЄК КОРИСТУВАЧА
     },
     email: {
       type: String,
@@ -31,7 +32,7 @@ const userSchema = new Schema(
       required: [true, "Verify token is required"],
     },
   },
-  { versionKey: false, timestamps: true }
+  { versionKey: false, timestamps: true } //versionKey: false is __v in our baza
 );
 
 userSchema.post("save", handleMongooseError);

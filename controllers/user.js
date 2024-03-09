@@ -4,7 +4,7 @@ const gravatar = require("gravatar");
 const path = require("path");
 const Jimp = require("jimp");
 const { nanoid } = require("nanoid");
-
+const { Types } = require("mongoose");
 const { User } = require("../models");
 
 const { HttpError, sendEmail } = require("../helper");
@@ -15,8 +15,16 @@ const avatarsDir = path.join(__dirname, "../", "public", "avatars");
 
 const register = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    const idIsValid = Types.ObjecId.isValid(id); //check if ID valid
+    if (!idIsValid) {
+      throw HttpError(404, "User doesn't exist");
+    }
+
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    //метод findOne нам поверне весь обєкт юзера, якщо вивести в консоль.
+    // можна використовувати метод exists, який працює так само, але поверне тільки айді
 
     if (user) {
       throw HttpError(409, "Email in use");
